@@ -15,6 +15,10 @@ public class Conta {
     private Integer numero;
     private Double saldo;
 
+    public Conta() {
+
+    }
+
     public Long getId() {
 	return id;
     }
