@@ -21,6 +21,33 @@
 
             <property name="hibernate.hbm2ddl.auto" value="update" />
 
+
+
+
+
+        <!-- Important 
+        <property name="hibernate.connection.provider_class"
+          value="org.hibernate.c3p0.internal.C3P0ConnectionProvider" />
+-->
+        
+
+        <property name="hibernate.c3p0.testConnectionOnCheckout" value="true" />
+        <property name="hibernate.c3p0.automaticTestTable" value="con_test" />
+        <property name="hibernate.c3p0.checkoutTimeout" value="30000" />
+        <property name="hibernate.c3p0.idleConnectionTestPeriod" value="30" />
+        <property name="hibernate.c3p0.initialPoolSize" value="10" />
+        <property name="hibernate.c3p0.maxIdleTime" value="30" />
+        <property name="hibernate.c3p0.maxPoolSize" value="100" />
+        <property name="hibernate.c3p0.minPoolSize" value="10" />
+        <property name="hibernate.c3p0.maxStatements" value="200" />
+        
+        
+    
+        
+
+
+
+
         </properties>
     </persistence-unit>
 </persistence>
