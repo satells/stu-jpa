@@ -60,11 +60,11 @@ public class ContaTest {
 
 	em.getTransaction().begin();
 	em.persist(conta);
+
 	em.getTransaction().commit();
 
 	id = conta.getId();
 	MatcherAssert.assertThat(id, Matchers.greaterThan(0L));
-
 	em.close();
 
 	em = emf.createEntityManager();
@@ -87,6 +87,7 @@ public class ContaTest {
 	conta.setNumero(9999);
 	conta.setAgencia(987);
 	conta.setSaldo(999999.99);
+
 	em.getTransaction().commit();
 
 	em.close();
