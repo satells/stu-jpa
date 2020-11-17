@@ -3,6 +3,7 @@ package br.com.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -19,9 +20,13 @@ public class Movimentacao {
     private Long id;
     @Enumerated(EnumType.STRING)
     private TipoMovimentacao tipoMovimentacao;
+    @Column(nullable = false, updatable = false)
     private LocalDateTime data;
+    @Column(nullable = false)
     private String descricao;
+    @Column(nullable = false)
     private BigDecimal valor;
+
     @ManyToOne
     private Conta conta;
 

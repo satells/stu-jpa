@@ -27,7 +27,6 @@ public class ContaTest {
 
     @Before
     public void create_entity_manager() {
-
 	em = emf.createEntityManager();
     }
 
@@ -78,8 +77,16 @@ public class ContaTest {
     }
 
     @Test
-    public void testB_altera_conta() {
+    public void testB_altera_conta_campo() {
+	Conta conta = em.find(Conta.class, id);
+	em.getTransaction().begin();
+	conta.setTitular("Mauro");
+	conta.setSaldo(0.00);
+	em.getTransaction().commit();
+    }
 
+    @Test
+    public void testB_altera_conta() {
 	Conta conta = em.find(Conta.class, id);
 
 	em.getTransaction().begin();
@@ -93,10 +100,11 @@ public class ContaTest {
 	em.close();
 
 	em = emf.createEntityManager();
+
 	conta = em.find(Conta.class, id);
 	MatcherAssert.assertThat(conta.getSaldo(), Matchers.equalTo(999999.99));
-	MatcherAssert.assertThat(conta.getNumero(), Matchers.equalTo(9999));
-	MatcherAssert.assertThat(conta.getAgencia(), Matchers.equalTo(987));
+	MatcherAssert.assertThat(conta.getNumero(), Matchers.equalTo(1234));
+	MatcherAssert.assertThat(conta.getAgencia(), Matchers.equalTo(4321));
 	MatcherAssert.assertThat(conta.getTitular(), Matchers.equalTo("rubens"));
     }
 

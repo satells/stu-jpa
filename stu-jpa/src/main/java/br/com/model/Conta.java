@@ -1,5 +1,6 @@
 package br.com.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,9 +11,13 @@ public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, length = 60)
     private String titular;
+    @Column(nullable = false, updatable = false)
     private Integer agencia;
+    @Column(nullable = false, updatable = false)
     private Integer numero;
+    @Column(nullable = false)
     private Double saldo;
 
     public Conta() {
