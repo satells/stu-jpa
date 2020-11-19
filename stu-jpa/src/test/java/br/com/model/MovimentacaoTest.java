@@ -83,8 +83,8 @@ public class MovimentacaoTest {
 	movimentacao.setTipoMovimentacao(TipoMovimentacao.SAIDA);
 	LocalDateTime data = LocalDateTime.now();
 	movimentacao.setData(data);
-	BigDecimal valor = new BigDecimal(1000);
-	movimentacao.setValor(valor);
+
+	movimentacao.setValor(new BigDecimal(1000.00));
 	em.getTransaction().begin();
 	em.persist(movimentacao);
 	em.getTransaction().commit();
@@ -95,8 +95,20 @@ public class MovimentacaoTest {
 	MatcherAssert.assertThat(movimentacao.getDescricao(), Matchers.equalTo("pão"));
 	MatcherAssert.assertThat(movimentacao.getData(), Matchers.equalTo(movimentacao.getData()));
 	MatcherAssert.assertThat(movimentacao.getId(), Matchers.equalTo(id));
-	MatcherAssert.assertThat(movimentacao.getValor(), Matchers.hasValue(valor));
+	MatcherAssert.assertThat(movimentacao.getValor().doubleValue(), Matchers.equalTo(new BigDecimal(1000.0).doubleValue()));
 
+    }
+
+    @Test
+    public void testC_remove_movimento() {
+	Movimentacao movimentacao = em.find(Movimentacao.class, id);
+
+	em.getTransaction().begin();
+	em.remove(movimentacao);
+	em.getTransaction().commit();
+	movimentacao = em.find(Movimentacao.class, id);
+
+	MatcherAssert.assertThat(movimentacao, Matchers.nullValue());
     }
 
     private Conta createConta() {
