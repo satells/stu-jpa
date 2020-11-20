@@ -96,7 +96,6 @@ public class MovimentacaoTest {
 	MatcherAssert.assertThat(movimentacao.getData(), Matchers.equalTo(movimentacao.getData()));
 	MatcherAssert.assertThat(movimentacao.getId(), Matchers.equalTo(id));
 	MatcherAssert.assertThat(movimentacao.getValor().doubleValue(), Matchers.equalTo(new BigDecimal(1000.0).doubleValue()));
-
     }
 
     @Test
